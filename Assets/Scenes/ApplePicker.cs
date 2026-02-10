@@ -15,6 +15,7 @@ public class ApplePicker : MonoBehaviour {
     public Text roundText;
 
     void Start () {
+        Basket.latestScore = 0;                                                           // a
         basketList = new List<GameObject>();                               // c
         for (int i=0; i<numBaskets; i++) {
             GameObject tBasketGO = Instantiate<GameObject>( basketPrefab );
