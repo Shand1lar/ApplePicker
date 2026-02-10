@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;                                          // a
 using UnityEngine;
-using UnityEngine.SceneManagement;                                         // b
+using UnityEngine.SceneManagement;   
+using UnityEngine.UI;                                      // b
 
 public class ApplePicker : MonoBehaviour {
     [Header("Set in Inspector")]
     public GameObject       basketPrefab;
-    public int              numBaskets = 3;
+    public int              numBaskets = 4;
     public float            basketBottomY = -14f;
     public float            basketSpacingY = 2f;
     public List<GameObject> basketList;
+
+    public Text roundText;
 
     void Start () {
         basketList = new List<GameObject>();                               // c
@@ -20,6 +23,7 @@ public class ApplePicker : MonoBehaviour {
             tBasketGO.transform.position = pos;
             basketList.Add( tBasketGO );                                   // d
         }
+        updateRoundText();
     }
 
     public void AppleDestroyed() {
@@ -39,7 +43,15 @@ public class ApplePicker : MonoBehaviour {
         Destroy( tBasketGO );
 
           if ( basketList.Count == 0 ) {
-            SceneManager.LoadScene( "_Scene_0" );                              // a
+            SceneManager.LoadScene( "_Scene_GameOver" );                              // a
+        }
+        if (basketList.Count > 0) {
+            updateRoundText();
         }
     } 
+
+    void updateRoundText() {
+        int roundNumber = (numBaskets - basketList.Count) + 1;
+        roundText.text = "Round: " + roundNumber.ToString();
+    }
 }

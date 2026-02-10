@@ -5,7 +5,8 @@ using UnityEngine.UI;     // This line enables use of uGUI features.        // a
 
 public class Basket : MonoBehaviour {
     [Header("Set Dynamically")]
-    public Text           scoreGT;                                          // a
+    public Text           scoreGT;
+    public static int           latestScore=0;                                          // a
 
     void Start() {
         // Find a reference to the ScoreCounter GameObject
@@ -47,6 +48,11 @@ public class Basket : MonoBehaviour {
             if(score>HighScore.score) {                                                   // e
                 HighScore.score = score;
             }
+            latestScore = score;                                                        // f
         }
+
+        if(collidedWith.tag == "Bomb") {
+           UnityEngine.SceneManagement.SceneManager.LoadScene("_Scene_GameOver");
     }
+  }
 }
