@@ -44,6 +44,7 @@ public class ApplePicker : MonoBehaviour {
         Destroy( tBasketGO );
 
           if ( basketList.Count == 0 ) {
+            roundText.text = "Game Over";                                                   // a
             SceneManager.LoadScene( "_Scene_GameOver" );                              // a
         }
         if (basketList.Count > 0) {
